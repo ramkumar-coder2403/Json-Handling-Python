@@ -1,0 +1,54 @@
+{
+    "Students": [
+        {
+            "Name": "John   ",
+            "DateOfBirth": "01-01-1990",
+            "PlaceOfBirth": "Ariyalur",
+            "Number": "0001"
+        },
+        {
+            "Name": "Steve  ",
+            "DateOfBirth": "01-01-1990",
+            "PlaceOfBirth": "Ariyalur",
+            "Number": "0002"
+        },
+        {
+            "Name": "Peter  ",
+            "DateOfBirth": "01-01-1990",
+            "PlaceOfBirth": "Ariyalur",
+            "Number": "0003"
+        },
+        {
+            "Name": "Patrick",
+            "DateOfBirth": "01-01-1990",
+            "PlaceOfBirth": "Ariyalur",
+            "Number": "0004"
+        }
+    ],
+    "Marks": [
+        {
+            "Number": "0001",
+            "English": "100",
+            "Science": "100",
+            "Maths": "100"
+        },
+        {
+            "Number": "0002",
+            "English": "100",
+            "Science": "100",
+            "Maths": "100"
+        },
+        {
+            "Number": "0003",
+            "English": "100",
+            "Science": "100",
+            "Maths": "100"
+        },
+        {
+            "Number": "0004",
+            "English": "100",
+            "Science": "100",
+            "Maths": "100"
+        }
+    ]
+}
