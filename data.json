@@ -28,9 +28,9 @@
     "Marks": [
         {
             "Number": "0001",
-            "English": "100",
-            "Science": "100",
-            "Maths": "100"
+            "English": "130",
+            "Science": "120",
+            "Maths": "150"
         },
         {
             "Number": "0002",
@@ -40,15 +40,15 @@
         },
         {
             "Number": "0003",
-            "English": "100",
-            "Science": "100",
-            "Maths": "100"
+            "English": "160",
+            "Science": "160",
+            "Maths": "160"
         },
         {
             "Number": "0004",
-            "English": "100",
-            "Science": "100",
-            "Maths": "100"
+            "English": "150",
+            "Science": "150",
+            "Maths": "150"
         }
     ]
 }
