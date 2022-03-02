@@ -8,7 +8,7 @@ f = open('data.json')
 data = json.load(f)
 
 
-print("\Serial Number", "\t", "Student Name", "\t", "Student Number")
+print("Serial Number", "\t", "Student Name", "\t", "Student Number")
 print("-----------", "\t", "------------", "\t", "-------------")
 
 idx = 0
