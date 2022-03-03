@@ -28,7 +28,7 @@ while True:
         else:
             break
     except ValueError:
-        if val == 'exit' or val == 'quit':
+        if val == 'exit':
             sys.exit()
         else:
             None
