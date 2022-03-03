@@ -26,32 +26,34 @@ while True:
         if n_val == 0 or n_val > idx:
             None
         else:
-            break
+            print('\n')
+            print("Name of the Student : ",
+                data['Students'][n_val-1]['Name'], '\n')
+
+            print("Serial number", "\t", "Subject", "\t", "Mark", "\t", "Status")
+            print("==============================================")
+
+            for j in range(len(data['Marks'])):
+                if data['Students'][n_val-1]['Number'] == data['Marks'][j]['Number']:
+                    for key in data['Marks'][j]:
+                        if key == 'Number':
+                            continue
+                        sl += 1
+                        tot += int(data['Marks'][j][key])
+                        if int(data['Marks'][j][key]) < 35:
+                            sts = 'fail'
+                        else:
+                            sts = 'pass'
+
+                        print(sl, "\t\t", key, "\t",
+                            data['Marks'][j][key], "\t", sts)
+
+            print("==============================================")
+            print('Total', "\t\t\t\t", tot)
+            print("==============================================")
     except ValueError:
         if val == 'exit':
-            sys.exit()
+            # sys.exit()
+            break
         else:
             None
-print('\n')
-print("Name of the Student : ", data['Students'][n_val-1]['Name'], '\n')
-
-print("Serial number", "\t", "Subject", "\t", "Mark", "\t", "Status")
-print("==============================================")
-
-for j in range(len(data['Marks'])):
-    if data['Students'][n_val-1]['Number'] == data['Marks'][j]['Number']:
-        for key in data['Marks'][j]:
-            if key == 'Number':
-                continue
-            sl += 1
-            tot += int(data['Marks'][j][key])
-            if int(data['Marks'][j][key]) < 35:
-                sts = 'fail'
-            else:
-                sts = 'pass'
-
-            print(sl, "\t\t", key, "\t", data['Marks'][j][key], "\t", sts)
-
-print("==============================================")
-print('Total', "\t\t\t\t", tot)
-print("==============================================")
