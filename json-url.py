@@ -50,6 +50,8 @@ while True:
 
             print("==============================================")
             print('Total', "\t\t\t\t", tot)
+            tot=0
+            sl=0
             print("==============================================")
     except ValueError:
         if val == 'exit':
