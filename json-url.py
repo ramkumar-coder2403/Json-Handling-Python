@@ -49,7 +49,7 @@ while True:
             print("==============================================")
             tot = 0
     except ValueError:
-        if val.lower() == 'exit':
+        if val.lower().replace(" ","") == 'exit':
             sys.exit()
             # break
         else:
