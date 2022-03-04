@@ -1,4 +1,5 @@
 import requests
+import sys
 
 r = requests.get("https://api.npoint.io/53141e20efcc35709569")
 data = r.json()
@@ -48,8 +49,8 @@ while True:
             print("==============================================")
             tot = 0
     except ValueError:
-        if val == 'exit':
-            # sys.exit()
-            break
+        if val.lower() == 'exit':
+            sys.exit()
+            # break
         else:
             None
