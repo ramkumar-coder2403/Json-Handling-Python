@@ -22,3 +22,6 @@ while True:
 jsonlist = [{'data1': lst[0]}, {'data2': lst[1]}, {'data3': lst[2]}]
 jsonString = json.dumps(jsonlist, indent=4)
 print(jsonString)
+
+with open("myjson.json", "w") as outfile: 
+    json.dump(json.loads(jsonString), outfile) 
