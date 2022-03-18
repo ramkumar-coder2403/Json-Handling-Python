@@ -32,27 +32,54 @@ def read_json(filename):
 
 def write_json(filename, data):
     with open(filename, 'w') as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=4)
+
+
+def chk_student(roll_number):
+    for i in range(len(data['Students'])):
+        if data['Students'][i]['Number'] == roll_number:
+            return True
+    return False
 
 
 def new_student():
-    try:
-        roll_number = int(input("Enter roll number: "))
-        stu_details = [{
-            "Name": str(input("Enter name: ")),
-            "DateOfBirth":  str(input("Enter DateofBirth: ")),
-            "PlaceOfBirth":  str(input("Enter PlaceofBirth: ")),
-            "Number":  roll_number
-        }, {
-            "Number": roll_number,
-            "English": int(input("Enter English mark: ")),
-            "Science": int(input("Enter Science mark: ")),
-            "Mathematics": int(input("Enter Mathematics mark: "))
-        }]
-    except ValueError:
-        print('Enter Valid Inputs')
-        new_student()
+    while True:
+        try:
+            roll_number = int(input("Enter roll number: "))
+            chk_roll = chk_student(roll_number)
+            if chk_roll == False:
+                stu_details = [{
+                    "Name": str(input("Enter name: ")),
+                    "DateOfBirth":  str(input("Enter DOB(dd-mm-yyyy): ")),
+                    "PlaceOfBirth":  str(input("Enter PlaceOfBirth: ")),
+                    "Number":  roll_number
+                }, {
+                    "Number": roll_number,
+                    "English": int(input("Enter English mark: ")),
+                    "Science": int(input("Enter Science mark: ")),
+                    "Mathematics": int(input("Enter Mathematics mark: "))
+                }]
+                break
+            else:
+                print('Student already exist')
+                None
+        except ValueError:
+            print('Enter Valid Inputs')
+            None
     return stu_details
+
+
+def delete_student(roll_num):
+    for i in range(len(data['Students'])):
+        if data['Students'][i]['Number'] == roll_num:
+            del data['Students'][i]
+            break
+    for j in range(len(data['Marks'])):
+        if data['Marks'][j]['Number'] == roll_num:
+            del data['Marks'][j]
+            write_json(filename, data)
+            return True
+    return False
 
 
 data = read_json(filename)
@@ -61,7 +88,7 @@ data = read_json(filename)
 def user_index():
     while True:
         print('\tINDEX\t')
-        print('===============')
+        print('========================')
         if len(data['Students']) == 0:
             print('1. Add Student')
             print('0. Exit')
@@ -98,19 +125,35 @@ def user_index():
                 user_index()
 
 
-val = user_index()
-print('VALLL : ', val)
-if val == 1:
-    new_stu = new_student()
-    data['Students'].append(new_stu[0])
-    data['Marks'].append(new_stu[1])
-    write_json(filename, data)
-    print('Student data Successfully Added')
-elif val == 2:
-    print('Delete Option Not Implemented.')
-    # print(len(data['Students']))
-    # new_stu = new_student()
+def entry_form():
+    val = user_index()
+    if val == 1:
+        new_stu = new_student()
+        data['Students'].append(new_stu[0])
+        data['Marks'].append(new_stu[1])
+        write_json(filename, data)
+        print('Student data Successfully Added')
+        entry_form()
+    elif val == 2:
+        while True:
+            try:
+                roll_num = int(input("Roll Num : "))
+                if delete_student(roll_num):
+                    print('Record deleted')
+                else:
+                    print('Role Number not found')
+                break
+            except ValueError:
+                print('Enter Valid Roll Number')
+                None
+        entry_form()
 
-    # data['O_data'].append(stuff)
 
-    # write_json('file.json', data)
+entry_form()
+
+# print(len(data['Students']))
+# new_stu = new_student()
+
+# data['O_data'].append(stuff)
+
+# write_json('file.json', data)
