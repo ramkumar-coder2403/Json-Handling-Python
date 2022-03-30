@@ -155,6 +155,36 @@ def new_student():
             None
 
 
+def chk_student(roll_num):
+    resp = False
+    for i in range(len(data['Students'])):
+        if data['Students'][i]['Number'] == roll_num:
+            resp = True
+            break
+    return resp
+
+
+def edit_student(roll_num):
+    while True:
+        try:
+            stu_details = [{
+                "Name": str(input("Enter name: ")),
+                "DateOfBirth": valid_dob(),
+                "PlaceOfBirth":  str(input("Enter PlaceOfBirth: ")),
+                "Number":  roll_num
+            }, {
+                "Number": roll_num,
+                "English": int(input("Enter English mark: ")),
+                "Science": int(input("Enter Science mark: ")),
+                "Mathematics": int(input("Enter Mathematics mark: "))
+            }]
+            return stu_details
+        except ValueError:
+            print('***ENTER VALID DETAILS***')
+            print('_________________________________________________')
+            None
+
+
 def delete_student(roll_num):
     for i in range(len(data['Students'])):
         if data['Students'][i]['Number'] == roll_num:
@@ -172,11 +202,11 @@ def index_main():
     while True:
         print('\t\tINDEX\t\n=============================')
         print(
-            '1. View All Records\n2. Add new Student\n3. Delete existing Student\n0. Exit')
+            '1. View All Records\n2. Add new Student\n3. Edit Student\n4. Delete existing Student\n0. Exit')
         print('=============================')
         try:
-            opt = int(input("Enter Option : "))
-            if opt == 1 or opt == 2 or opt == 3:
+            opt = int(input("Enter Valid Option : "))
+            if opt == 1 or opt == 2 or opt == 3 or opt == 4:
                 return opt
             elif opt == 0:
                 sys.exit()
@@ -206,6 +236,28 @@ def main():
 
             None
         elif val == 3:
+            while True:
+                try:
+                    roll_num = input("Roll Num : ")
+                    int(roll_num)
+                    if chk_student(roll_num):
+                        edit_stu = edit_student(roll_num)
+                        if delete_student(roll_num):
+                            data['Students'].append(edit_stu[0])
+                            data['Marks'].append(edit_stu[1])
+                            write_json(filename, data)
+                            print(
+                                '_______________________________________________')
+                            print('*****STUDENT RECORD EDITED SUCCESSFULLY.')
+                        else:
+                            print("***Error in edit opt")
+                    else:
+                        print('*******STUDENT RECORD NOT FOUND.')
+                    break
+                except ValueError:
+                    print('***ENTER VALID ROLL NUMBER***')
+                    None
+        elif val == 4:
             while True:
                 try:
                     roll_num = input("Roll Num : ")
