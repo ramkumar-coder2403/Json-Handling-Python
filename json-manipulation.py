@@ -1,6 +1,7 @@
 import json
 import sys
 from os import path
+from datetime import datetime
 
 # initialize/declaration part
 filename = 'Student.json'
@@ -15,7 +16,7 @@ if path.isfile(filename) is False:
 else:
     try:
         with open(filename, 'r') as f:
-            data=json.load(f)
+            data = json.load(f)
             len(data['Students'])
     except:
         with open(filename, "w") as outfile:
@@ -108,6 +109,23 @@ def chk_student_byID(roll_number):
     return False
 
 
+def valid_dob():
+    format = "%d-%m-%Y"
+    maxYear = 2017
+    minYear = 1990
+    while True:
+        dob = str(input("Enter DOB(dd-mm-yyyy) year[1990-2017]: "))
+
+        try:
+            fDate = datetime.strptime(dob, format)
+            if fDate.year < minYear or fDate.year > maxYear:
+                None
+            else:
+                return dob
+        except:
+            None
+
+
 def new_student():
     while True:
         try:
@@ -118,7 +136,7 @@ def new_student():
             if chk_roll == False:
                 stu_details = [{
                     "Name": str(input("Enter name: ")),
-                    "DateOfBirth":  str(input("Enter DOB(dd-mm-yyyy): ")),
+                    "DateOfBirth": valid_dob(),
                     "PlaceOfBirth":  str(input("Enter PlaceOfBirth: ")),
                     "Number":  roll_number
                 }, {
@@ -127,7 +145,7 @@ def new_student():
                     "Science": int(input("Enter Science mark: ")),
                     "Mathematics": int(input("Enter Mathematics mark: "))
                 }]
-                break
+                return stu_details
             else:
                 print('STUDENT RECORD ALREADY FOUND.')
                 None
@@ -135,7 +153,6 @@ def new_student():
             print('***ENTER VALID DETAILS***')
             print('_________________________________________________')
             None
-    return stu_details
 
 
 def delete_student(roll_num):
@@ -176,7 +193,7 @@ def main():
         if val == 1:
             if len(data['Students']) == 0:
                 print('_________________________________________________')
-                print('STUDENT RECORDS NOT FOUND.')
+                print('*******STUDENT RECORDS NOT FOUND.')
             else:
                 view_all_rec()
         elif val == 2:
@@ -185,7 +202,7 @@ def main():
             data['Marks'].append(new_stu[1])
             write_json(filename, data)
             print('_________________________________________________')
-            print('STUDENT RECORD ADDED SUCCESSFULLY.')
+            print('*******STUDENT RECORD ADDED SUCCESSFULLY.')
 
             None
         elif val == 3:
